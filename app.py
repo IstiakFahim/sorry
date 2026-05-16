@@ -6,7 +6,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# SESSION
+# SESSION STATE
 if "show_buttons" not in st.session_state:
     st.session_state.show_buttons = False
 
@@ -50,12 +50,8 @@ header, footer, #MainMenu {
     margin-top: 80px;
     font-size: 18px;
     opacity: 0.9;
-}
-
-/* Center Streamlit buttons */
-div.stButton {
-    display: flex;
-    justify-content: center;
+    text-align: center;
+    color: white;
 }
 
 /* Button styling */
@@ -107,7 +103,7 @@ Please forgive this dumb human named Fahim Istiak ❤️
 st.write("")
 st.write("")
 
-# OPEN BUTTON (CENTERED PROPERLY)
+# OPEN BUTTON (PROPER CENTER FIX)
 if not st.session_state.show_buttons:
 
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -137,7 +133,7 @@ if st.session_state.show_buttons:
 
 # FOOTER
 st.markdown("""
-<div class="footer" style="text-align:center;color:white;">
+<div class="footer">
 Made with love, regret & overthinking by Fahim Istiak 💖
 </div>
 """, unsafe_allow_html=True)
