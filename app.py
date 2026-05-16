@@ -54,12 +54,6 @@ header, footer, #MainMenu {
     color: white;
 }
 
-/* Center all buttons inside their containers */
-div.stButton {
-    display: flex;
-    justify-content: center;
-}
-
 /* Button styling */
 div.stButton > button:first-child {
     background-color: #ff4f81;
@@ -111,11 +105,13 @@ st.write("")
 
 # OPEN BUTTON (PROPER CENTER FIX)
 if not st.session_state.show_buttons:
-    # Because of the CSS flexbox, this will now be perfectly centered 
-    # without needing column hacks.
-    if st.button("Open My Heart 🌸"):
-        st.session_state.show_buttons = True
-        st.rerun()
+    # Using specific column ratios and use_container_width forces it to center properly
+    col1, col2, col3 = st.columns([3, 2, 3])
+    
+    with col2:
+        if st.button("Open My Heart 🌸", use_container_width=True):
+            st.session_state.show_buttons = True
+            st.rerun()
 
 # YES / NO BUTTONS
 if st.session_state.show_buttons:
@@ -125,7 +121,7 @@ if st.session_state.show_buttons:
         unsafe_allow_html=True
     )
 
-    # Using 4 columns keeps the buttons clustered tightly in the center
+    # 4 columns keeps the Yes/No buttons clustered tightly in the center
     col1, col2, col3, col4 = st.columns([2, 1, 1, 2])
 
     with col2:
