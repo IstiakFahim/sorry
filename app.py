@@ -107,15 +107,34 @@ Please forgive this dumb human named Fahim Istiak ❤️
 st.write("")
 st.write("")
 
-# OPEN BUTTON
+## OPEN BUTTON
 if not st.session_state.show_buttons:
 
-    col1, col2, col3 = st.columns([1, 2, 1])
+    st.markdown("""
+    <div style="display:flex; justify-content:center; margin-top:30px;">
+        <form action="" method="get">
+            <button style="
+                background-color:#ff4f81;
+                color:white;
+                border:none;
+                border-radius:40px;
+                padding:12px 28px;
+                font-size:22px;
+                cursor:pointer;
+                transition:0.3s;
+            "
+            onmouseover="this.style.backgroundColor='#ff2f68'; this.style.transform='scale(1.08)'"
+            onmouseout="this.style.backgroundColor='#ff4f81'; this.style.transform='scale(1)'"
+            >
+                Open My Heart 🌸
+            </button>
+        </form>
+    </div>
+    """, unsafe_allow_html=True)
 
-    with col2:
-        if st.button("Open My Heart 🌸"):
-            st.session_state.show_buttons = True
-            st.rerun()
+    if st.button("hidden_trigger", key="hidden_trigger"):
+        st.session_state.show_buttons = True
+        st.rerun()
 
 # YES / NO BUTTONS
 if st.session_state.show_buttons:
