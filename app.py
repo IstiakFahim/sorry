@@ -109,9 +109,13 @@ st.write("")
 
 # OPEN BUTTON
 if not st.session_state.show_buttons:
-    if st.button("Open My Heart 🌸"):
-        st.session_state.show_buttons = True
-        st.rerun()
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col2:
+        if st.button("Open My Heart 🌸"):
+            st.session_state.show_buttons = True
+            st.rerun()
 
 # YES / NO BUTTONS
 if st.session_state.show_buttons:
