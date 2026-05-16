@@ -52,7 +52,7 @@ header, footer, #MainMenu {
     opacity: 0.9;
 }
 
-/* Center buttons */
+/* Center Streamlit buttons */
 div.stButton {
     display: flex;
     justify-content: center;
@@ -107,34 +107,15 @@ Please forgive this dumb human named Fahim Istiak ❤️
 st.write("")
 st.write("")
 
-## OPEN BUTTON
+# OPEN BUTTON (CENTERED PROPERLY)
 if not st.session_state.show_buttons:
 
-    st.markdown("""
-    <div style="display:flex; justify-content:center; margin-top:30px;">
-        <form action="" method="get">
-            <button style="
-                background-color:#ff4f81;
-                color:white;
-                border:none;
-                border-radius:40px;
-                padding:12px 28px;
-                font-size:22px;
-                cursor:pointer;
-                transition:0.3s;
-            "
-            onmouseover="this.style.backgroundColor='#ff2f68'; this.style.transform='scale(1.08)'"
-            onmouseout="this.style.backgroundColor='#ff4f81'; this.style.transform='scale(1)'"
-            >
-                Open My Heart 🌸
-            </button>
-        </form>
-    </div>
-    """, unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 2, 1])
 
-    if st.button("hidden_trigger", key="hidden_trigger"):
-        st.session_state.show_buttons = True
-        st.rerun()
+    with col2:
+        if st.button("Open My Heart 🌸"):
+            st.session_state.show_buttons = True
+            st.rerun()
 
 # YES / NO BUTTONS
 if st.session_state.show_buttons:
@@ -144,7 +125,7 @@ if st.session_state.show_buttons:
         unsafe_allow_html=True
     )
 
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([1, 1])
 
     with col1:
         if st.button("Yes ❤️"):
