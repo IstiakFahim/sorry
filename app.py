@@ -1,119 +1,177 @@
 import streamlit as st
 import random
 
-st.set_page_config(page_title="Sorry Heeya ❤️", page_icon="🥺")
+st.set_page_config(
+    page_title="Sorry Heeya ❤️",
+    page_icon="🥺",
+    layout="wide"
+)
 
 # Session state
 if "show_question" not in st.session_state:
     st.session_state.show_question = False
 
 if "no_x" not in st.session_state:
-    st.session_state.no_x = random.randint(10, 80)
+    st.session_state.no_x = random.randint(5, 85)
 
 if "no_y" not in st.session_state:
-    st.session_state.no_y = random.randint(10, 80)
+    st.session_state.no_y = random.randint(20, 80)
 
-# Background and styling
+# Background + styling
 st.markdown(
-    """
+    f"""
     <style>
-    .main {
-        background-color: #ffd6e7;
-    }
 
-    .box {
-        background: white;
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    .stApp {{
+        background: linear-gradient(135deg, #ff9ec4, #ffd6e7, #ffc2d1);
+        overflow: hidden;
+    }}
+
+    /* Hide ugly streamlit stuff */
+    header {{
+        visibility: hidden;
+    }}
+
+    footer {{
+        visibility: hidden;
+    }}
+
+    #MainMenu {{
+        visibility: hidden;
+    }}
+
+    .main-text {{
         text-align: center;
-    }
+        padding-top: 80px;
+    }}
 
-    .title {
-        color: #ff4f81;
-        font-size: 50px;
+    .title {{
+        font-size: 60px;
+        color: white;
         font-weight: bold;
-    }
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    }}
 
-    .text {
-        color: #555;
-        font-size: 22px;
-        line-height: 1.7;
-    }
+    .message {{
+        font-size: 26px;
+        color: white;
+        line-height: 1.8;
+        max-width: 900px;
+        margin: auto;
+        text-shadow: 1px 1px 6px rgba(0,0,0,0.15);
+    }}
 
-    .footer {
-        margin-top: 30px;
-        color: gray;
-        font-size: 16px;
-    }
+    .footer {{
+        text-align: center;
+        margin-top: 50px;
+        color: white;
+        font-size: 18px;
+    }}
+
+    .yes-btn button {{
+        background-color: #ff4f81 !important;
+        color: white !important;
+        border-radius: 40px !important;
+        height: 3.5em;
+        width: 10em;
+        font-size: 20px !important;
+        border: none !important;
+    }}
+
+    .yes-btn button:hover {{
+        transform: scale(1.08);
+        transition: 0.2s;
+    }}
+
     </style>
     """,
     unsafe_allow_html=True
 )
 
-st.markdown("<div class='box'>", unsafe_allow_html=True)
-
-st.markdown(
-    "<h1 class='title'>🥺 I'm Really Sorry Saima Ekram Heeya 💌</h1>",
-    unsafe_allow_html=True
-)
-
+# Main content
 st.markdown(
     """
-    <p class='text'>
-    I know I messed up and hurt you.<br><br>
+    <div class="main-text">
+        <div class="title">🥺 I'm Really Sorry Heeya 💌</div>
 
-    You are genuinely one of the most important people in my life,
-    and seeing you upset because of me hurts a lot.<br><br>
+        <br>
 
-    I never wanted to make you sad.<br>
-    Please forgive this dumb human named Fahim Istiak ❤️
-    </p>
+        <div class="message">
+            Saima Ekram Heeya,<br><br>
+
+            I know I messed up and hurt you.<br>
+            That was never my intention.<br><br>
+
+            You genuinely mean a lot to me,
+            and seeing you upset because of me hurts deeply.<br><br>
+
+            I never wanted to make you sad.<br>
+            Please forgive this dumb human named Fahim Istiak ❤️
+        </div>
+    </div>
     """,
     unsafe_allow_html=True
 )
 
-# First button
+st.write("")
+st.write("")
+
+# Open heart button
 if not st.session_state.show_question:
     if st.button("Open My Heart 🌸"):
         st.session_state.show_question = True
         st.rerun()
 
-# Yes/No section
+# Yes/No buttons
 if st.session_state.show_question:
 
-    st.markdown("## Will you forgive me? 🥺")
+    st.markdown(
+        "<h1 style='text-align:center; color:white;'>Will you forgive me? 🥺</h1>",
+        unsafe_allow_html=True
+    )
 
-    col1, col2 = st.columns(2)
+    # YES BUTTON CENTER
+    st.markdown("<div class='yes-btn'>", unsafe_allow_html=True)
 
-    with col1:
-        if st.button("Yes ❤️"):
-            st.balloons()
-            st.success("YAYYY 😭❤️ Thank you Heeya, Fahim loves you so much!")
+    col1, col2, col3 = st.columns([2,1,2])
 
     with col2:
-        # Moving No button
+        if st.button("Yes ❤️"):
+            st.balloons()
+            st.success("YAYYY 😭❤️ Heeya forgave Fahim!")
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    # MOVING NO BUTTON
+    no_placeholder = st.empty()
+
+    with no_placeholder.container():
+
         st.markdown(
             f'''
             <div style="
-                position: relative;
-                left: {random.randint(-100,100)}px;
-                top: {random.randint(-20,20)}px;
+                position: fixed;
+                left: {st.session_state.no_x}%;
+                top: {st.session_state.no_y}%;
+                z-index: 999;
             ">
             ''',
             unsafe_allow_html=True
         )
 
         if st.button("No 💔"):
-            st.session_state.no_x = random.randint(10, 80)
-            st.session_state.no_y = random.randint(10, 80)
+            st.session_state.no_x = random.randint(0, 90)
+            st.session_state.no_y = random.randint(10, 90)
             st.rerun()
 
         st.markdown("</div>", unsafe_allow_html=True)
 
+# Footer
 st.markdown(
-    "<div class='footer'>Made with love, regret & overthinking by Fahim Istiak 💖</div>",
+    """
+    <div class="footer">
+        Made with love, regret & overthinking by Fahim Istiak 💖
+    </div>
+    """,
     unsafe_allow_html=True
 )
-
-st.markdown("</div>", unsafe_allow_html=True)
