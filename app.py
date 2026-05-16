@@ -181,7 +181,7 @@ if st.session_state.forgiven:
     with col2:
         st.markdown("""
         <div class="success-text">
-        YAYYYY 😭❤️ Heeya forgave Fahim! 🎉💕<br>
+        YAYYYY 😭❤️ Heeya forgave Meeeeeeeeeeeeeeeeeeee! 🎉💕<br>
         <span style="font-size:35px; color:#ff4081;">I promise to be better! 🌸</span>
         </div>
         """, unsafe_allow_html=True)
